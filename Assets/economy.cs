@@ -3,12 +3,12 @@ using System.Collections;
 
 public class economy : MonoBehaviour {
 
-	public int heartCost = 10;
-	public int jarCost = 10;
-	public int boneCost = 10;
-	public int fireCost = 10;
+	public int heartCost = 5;
+	public int jarCost = 5;
+	public int boneCost = 5;
+	public int fireCost = 5;
 
-	int[] tempStorage = {10,10,10,10};
+	int[] tempStorage = {5,5,5,5};
 
 	// Use this for initialization
 	void Start () {
@@ -29,8 +29,8 @@ public class economy : MonoBehaviour {
 
 			tempStorage [i] += v;
 
-			if (tempStorage [i] > 20) {
-				tempStorage [i] = 20;
+			if (tempStorage [i] > 8) {
+				tempStorage [i] = 8;
 			}
 
 			if (tempStorage [i] < 1) {

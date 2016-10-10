@@ -18,7 +18,6 @@ public class tradeItems : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D col){
-		Offer ();
 		if (myItem == Item.heart) {
 			cost = econ.heartCost;
 		} else if (myItem == Item.jar) {
@@ -28,6 +27,8 @@ public class tradeItems : MonoBehaviour {
 		} else if (myItem == Item.fire) {
 			cost = econ.fireCost;
 		}
+
+		Offer ();
 	}
 
 	void OnTriggerExit2D(Collider2D col){
@@ -44,7 +45,31 @@ public class tradeItems : MonoBehaviour {
 	}
 
 	void Trade(){
-		
+
+		if (yourItem == Item.heart) {
+			if (player.GetComponent<inventory> ().hearts < cost) {
+				return;
+			}
+			player.GetComponent<inventory> ().hearts -= cost;
+
+		} else if (yourItem == Item.jar) {
+			if (player.GetComponent<inventory> ().jars < cost) {
+				return;
+			}
+			player.GetComponent<inventory> ().jars -= cost;
+		} else if (yourItem == Item.bone) {
+			if (player.GetComponent<inventory> ().bones < cost) {
+				return;
+			}
+			player.GetComponent<inventory> ().bones -= cost;
+		} else {
+			if (player.GetComponent<inventory> ().fires < cost) {
+				return;
+			}
+			player.GetComponent<inventory> ().fires -= cost;
+		}
+
+
 		if (myItem == Item.heart) {
 			player.GetComponent<inventory> ().hearts += 5;
 
@@ -52,24 +77,13 @@ public class tradeItems : MonoBehaviour {
 			player.GetComponent<inventory> ().jars += 5;
 		} else if (myItem == Item.bone) {
 			player.GetComponent<inventory> ().bones += 5;
-		} else if (myItem == Item.fire) {
+		} else {
 			player.GetComponent<inventory> ().fires += 5;
-		}
-
-		if (yourItem == Item.heart) {
-			player.GetComponent<inventory> ().hearts -= cost;
-
-		} else if (yourItem == Item.jar) {
-			player.GetComponent<inventory> ().jars -= cost;
-		} else if (yourItem == Item.bone) {
-			player.GetComponent<inventory> ().bones -= cost;
-		} else if (yourItem == Item.fire) {
-			player.GetComponent<inventory> ().fires -= cost;
 		}
 
 		updateInv[] upade = GameObject.FindGameObjectWithTag ("PlayerInv").GetComponentsInChildren<updateInv> ();
 
-		for(int i = 0; i < 4; i++){
+		for(int i = 0; i <= 4; i++){
 			upade [i].JustDoIt ();
 		}
 	}

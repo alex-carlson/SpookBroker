@@ -21,7 +21,7 @@ public class updateInv : MonoBehaviour {
 			GetComponentInChildren<Text>().text = ": "+plr.GetComponent<inventory> ().jars;
 		} else if(myType == textItem.bone){
 			GetComponentInChildren<Text>().text = ": "+plr.GetComponent<inventory> ().bones;
-		} else {
+		} else if(myType == textItem.fire){
 			GetComponentInChildren<Text>().text = ": "+plr.GetComponent<inventory> ().fires;
 		}
 	}
